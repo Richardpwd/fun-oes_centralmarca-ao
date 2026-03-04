@@ -1,0 +1,195 @@
+ATENDIMENTOS DA CENTRAL DE MARCAÇÃO
+
+1) RESUMO RÁPIDO
+Tela: /atendimentosCM
+
+Perfis:
+- Central de Marcação (ProfissionalTipo.CentralMarcacao)
+- Médico Central de Marcação (ProfissionalTipo.MedicoCentralMarcacao)
+- Setor de Transporte (Permissoes.SETOR_TRANSPORTE)
+
+Permissão adicional usada em ações críticas:
+- GERENCIAR_ATENDIMENTOS_ENCAMINHADOS
+
+2) O QUE CADA PERFIL PODE FAZER
+
+Central de Marcação:
+- Ver lista completa de atendimentos
+- Filtrar por status, profissional, data e protocolo
+- Ver detalhes completos do atendimento
+- Criar, visualizar e cancelar marcações
+- Agendar procedimentos
+- Gerar comprovante e ficha de autorização (PDF)
+- Reencaminhar atendimento
+- Encerrar atendimento
+- Ver e editar dados do paciente
+- Chamar paciente no painel (com permissão adicional)
+- Ver dashboard
+- Exportar PDF da lista e do dashboard
+
+Médico Central de Marcação:
+- Permissões equivalentes à Central de Marcação
+
+Setor de Transporte:
+- Ver lista de atendimentos (visão restrita)
+- Ver detalhes do atendimento
+- Ver dashboard
+- Exportar PDF da lista e do dashboard
+- Ver agenda de transporte (TransporteAgendaSection)
+- Reencaminhar atendimento (quando permitido)
+- Encerrar atendimento (quando permitido)
+
+Setor de Transporte NÃO pode:
+- Editar dados do paciente
+- Criar/gerenciar marcações
+- Agendar procedimentos
+- Gerar comprovantes/fichas
+- Chamar no painel
+- Ver histórico completo de marcações
+
+3) FUNCIONALIDADES PRINCIPAIS
+
+Painel de estatísticas:
+- Contagem de não finalizados por profissional
+- Total finalizados no período
+- Finalizados por mim
+- Card colapsável
+- Atualização manual
+- Loading durante carregamento
+
+Aba Lista de Atendimento:
+- Busca rápida por nome, CPF ou CNS
+- Filtros de status, profissionais, data e protocolo
+- Aplicar filtros e limpar filtros
+- Tabela com: Paciente, Status, Última atualização, Tempo de espera
+- Exportar em PDF (limite 10.000 registros)
+- Paginação: 10, 25, 50, 100
+
+Aba Dashboard:
+- Gráfico por profissional
+- Filtro de período
+- Filtro de profissionais
+- Cards de resumo
+- Exportação em PDF
+
+4) MODAL DE DETALHES DO ATENDIMENTO
+- Cabeçalho com ações
+- Card de dados do paciente
+- Histórico de marcações ou agenda de transporte (conforme perfil)
+- Rodapé com ações de reencaminhar e encerrar
+
+Ações do cabeçalho:
+- Chamar no painel (requer GERENCIAR_ATENDIMENTOS_ENCAMINHADOS, cooldown 12s)
+- Fechar modal
+
+Dados do paciente:
+- Nome, CPF, CNS, nome da mãe
+- Número do atendimento, telefone, endereço
+- Badge de prioridade
+- Ver/Editar paciente (bloqueado para SETOR_TRANSPORTE)
+
+5) MODAL DE HISTÓRICO DE STATUS
+- Acesso pelo clique no badge de status
+- Mostra status atual e timeline de alterações
+- Inclui data/hora, profissional e descrição
+
+6) MODAL DE DETALHES DA MARCAÇÃO
+Disponível para Central e Médico, bloqueado para Setor de Transporte.
+Ações:
+- Gerar comprovante (PDF)
+- Gerar ficha de autorização (PDF)
+- Agendar
+- Cancelar marcação
+
+7) REGRAS DE NEGÓCIO
+Busca inteligente:
+- 11 dígitos numéricos: CPF
+- 15 dígitos numéricos: CNS
+- Texto alfanumérico: Nome
+
+Formatação:
+- CPF: 999.999.999-99
+- CNS: 999 999 999 999 999
+- Exibição de data: DD/MM/YYYY HH:mm
+- API em UTC
+
+Filtros e paginação:
+- Troca de página mantém filtros
+- Mudança de limite volta para página 1
+- Filtros vazios não são enviados
+- Múltiplos valores separados por ;
+
+Limites:
+- Exportação PDF: até 10.000 registros
+- Debounce de busca de profissionais: 300ms
+- Cooldown chamar painel: 12s
+- Máximo por página: 100
+
+8) MATRIZ RESUMIDA DE PERMISSÕES
+Legenda:
+- ✅ permitido
+- ❌ não permitido
+- ✅* permitido com GERENCIAR_ATENDIMENTOS_ENCAMINHADOS
+
+- Ver lista/detalhes/dashboard/filtros/exportação: Central ✅ | Médico ✅ | Transporte ✅
+- Chamar no painel: Central ✅* | Médico ✅* | Transporte ❌
+- Reencaminhar/encerrar: Central ✅* | Médico ✅* | Transporte ✅*
+- Editar paciente: Central ✅ | Médico ✅ | Transporte ❌
+- Histórico completo de marcações: Central ✅ | Médico ✅ | Transporte ❌
+- Agenda de transporte: Central ❌ | Médico ❌ | Transporte ✅
+- Criar marcação/agendar/gerar comprovantes: Central ✅ | Médico ✅ | Transporte ❌
+
+9) FLUXOS PRINCIPAIS
+Carregamento inicial:
+1. Carrega atendimentos
+2. Carrega situação da fila
+3. Carrega profissionais
+4. Carrega opções de status e setor
+5. Carrega contagens do painel
+
+Aplicar filtros:
+1. Usuário preenche filtros
+2. Sistema normaliza dados
+3. Envia request
+4. Atualiza tabela e paginação
+
+Reencaminhar:
+1. Seleciona profissional
+2. Valida dados
+3. Atualiza para Encaminhado
+4. Mostra sucesso
+
+Encerrar:
+1. Confirma ação
+2. Atualiza para Finalizado
+3. Mostra sucesso
+
+10) ERROS MAIS COMUNS
+- Erro ao carregar os atendimentos
+- Nenhum atendimento encontrado
+- Erro ao carregar profissionais da central de marcação
+- Erro ao exportar relatório PDF
+- Não foi possível carregar os detalhes deste atendimento
+- Erro ao reencaminhar atendimento
+
+11) REFERÊNCIA TÉCNICA
+Componentes:
+- AtendimentosCm
+- AtendimentoCMModal
+- StatusDetailModal
+- DashboardsAtendimentosCm
+- FiltrosGenericos
+- Table
+
+APIs:
+- getAtendimentosCentralMarcacao
+- getAtendimentoCentralMarcacaoById
+- updateStatusAtendimentoCentralMarcacao
+- getSituacaoFilaAtendimentoCm
+- getAtendimentosNaoFinalizadosPorProfissional
+- getProfissionaisByTipo
+
+Enums:
+- ProfissionalTipo
+- Permissoes
+- AtendimentoCentralMarcacaoStatusEnum
