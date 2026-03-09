@@ -189,7 +189,7 @@ Opções:
 
 **O que acontece:**
 
-- Abre um modal com as opções:
+Abre um modal com as opções:
 - Adicionar agendamento
 - Nessa opção é possível agendar pelo:
 - Nome do paciente
@@ -197,13 +197,13 @@ Opções:
 - CNS
 - Escolher o horário
 
-- Editar
+Editar
 - Edita a agenda já criada
 - É possível mudar:
 - Descrição
 - Data
 
-- Gerar relatório
+Gerar relatório
 - Gera PDF com todos os pacientes contendo:
 - Telefone
 - Idade
