@@ -10,7 +10,7 @@
 
 ### As funcionalidades são:
 
-#### Criar Novo Atendimento
+### Criar Novo Atendimento ###
 
 **Quando clico em: Botão "Novo Atendimento"**
 
@@ -47,13 +47,13 @@ O que acontece:
 - Abre modal de atendimento automaticamente
 - Opção de reencaminhar atendimento (aparece modal para selecionar profissional)
 
-#### Atualizar
+### Atualizar ###
 
 Quando outro usuário realiza uma ação:
 
 - A lista é atualizada automaticamente sem precisar recarregar a aba
 
-#### Atender em Outro Local
+### Atender em Outro Local ###
 
 **Quando clico em: Toggle "Atender em outro local"**
 
@@ -64,7 +64,7 @@ O que acontece:
 - A lista é filtrada pelos profissionais selecionados
 - Locais disponíveis dependem das permissões do usuário
 
-#### Impressão de Senha
+### Impressão de Senha ###
 
 Quando um atendimento é criado:
 
@@ -79,7 +79,7 @@ Exibe:
 - Após 500ms, inicia impressão automaticamente
 - Formato otimizado para impressora térmica (80mm)
 
-#### Atendimentos em andamento
+### Atendimentos em andamento ###
 
 Aba no topo da tela que mostra ou oculta todos os atendimentos em andamento e a quantidade de finalizados.
 
@@ -87,7 +87,7 @@ Aba no topo da tela que mostra ou oculta todos os atendimentos em andamento e a 
 
 - Somente Marcação por UBS
 
-### As funcionalidades são:
+### As funcionalidades são: ###
 
 - Não consegue ver Atendimento Central de Marcação
 - Só tem acesso à Central de Marcação
@@ -95,7 +95,7 @@ Aba no topo da tela que mostra ou oculta todos os atendimentos em andamento e a 
 - Acesso a atendimentos CM
 - Acesso à tela de procedimentos
 
-#### Quando clico em: Fila de marcação
+### Quando clico em: Fila de marcação ###
 
 O que acontece:
 
@@ -116,7 +116,7 @@ O que acontece:
 - CPF
 - CNS
 
-#### Opção avançada de filtros:
+### Opção avançada de filtros: ###
 
 - Data inicial da marcação
 - Data final da marcação
@@ -127,7 +127,7 @@ O que acontece:
 - Procedimento
 - Profissional solicitado
 
-#### Botão que exibe relatórios:
+### Botão que exibe relatórios: ###
 
 Opções:
 
@@ -135,7 +135,7 @@ Opções:
 - Relatório por especialidade
 - Relatório de produção por profissional
 
-#### Em agendamentos confirmados
+### Em agendamentos confirmados ###
 
 - Aparecem quase as mesmas opções da fila de marcação
 - Adiciona, em filtros avançados, a opção Profissional executado
@@ -143,7 +143,7 @@ Opções:
 - Ver detalhes
 - Comprovante
 
-#### Agendamentos finalizados
+### Agendamentos finalizados ###
 
 - Aparecem quase as mesmas opções da fila de marcação
 - Adiciona, em filtros avançados, a opção Profissional executado
@@ -151,6 +151,16 @@ Opções:
 - Ver detalhes
 - Comprovante
 - Comprovante de inscrição
+
+### Nova Marcação ### 
+
+- Pode buscar paciente pelo nome, cpf e cns
+- Classificação de normal ou urgente 
+- Se é retorno (opção de sim ou não)
+- Procedimento (abre lista com todos procedimentos)
+- Unidade
+- Profissional solicitante (abre lista com todos usuarios )
+- Descrição 
 
 ## Usuário com permissão
 
@@ -162,13 +172,13 @@ Opções:
 - Tem acesso à agenda do setor de transporte
 - Não aparecem todas as opções de atendimentos da Central de Marcação (não é possível criar um novo atendimento)
 
-#### Ao apertar em: Exportar agenda
+### Ao apertar em: Exportar agenda ###
 
 **O que acontece:**
 
 - Cria um PDF com tudo que está marcado na agenda de transporte
 
-#### Quando clico em: Nova agenda
+### Quando clico em: Nova agenda ###
 
 **O que acontece:**
 
@@ -178,14 +188,14 @@ Opções:
 - Quando a agenda é criada, aparece mensagem dizendo que a agenda de transporte foi criada com sucesso
 - Opção de filtro por nome da agenda
 
-#### Outras opções na interface
+### Outras opções na interface ###
 
 - Opção de ver agendas ativas
 - Opção de mudar o dia do mês
 - Opção de filtrar por nome da agenda
 - Na lista de atendimentos aparecem todas as informações e o horário do paciente
 
-#### Ao clicar em alguma agenda
+### Ao clicar em alguma agenda ###
 
 **O que acontece:**
 
